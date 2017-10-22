@@ -8,7 +8,7 @@ let mainWindow;
 let addWindow;
 
 // Set environment
-process.env.NODE_ENV = "live"
+// process.env.NODE_ENV = "live"
 
 app.on("ready", function() {
     mainWindow = new BrowserWindow({});
