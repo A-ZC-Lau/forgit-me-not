@@ -4,6 +4,8 @@ const path = require("path")
 
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 
+let component_dir = path.join(__dirname, 'components')
+
 let mainWindow;
 let addWindow;
 
@@ -36,7 +38,7 @@ function createAddWindow(){
         title: 'Add Shopping List Item'
     });
     addWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'addWindow.html'),
+        pathname: path.join(component_dir, 'addWindow.html'),
         protocol: 'file:',
         slashes:true
     }));
