@@ -1,3 +1,5 @@
 <div>
-    <button v-on:click="open_folder">Use folder</button>
+    <div v-if="!store.state.General.selection">
+        Make a selection from the left
+    </div>
 </div>
