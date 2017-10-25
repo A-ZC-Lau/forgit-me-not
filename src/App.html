@@ -2,9 +2,9 @@
     <aside id="sidebar" v-if="store.state.General.folder">
         <sidebar/>
     </aside>
-    <div v-if="store.state.General.folder">
+    <main v-if="store.state.General.folder">
         <writing/>
-    </div>
+    </main>
     <!-- <router-view class='main-view' v-if="store.state.General.folder"/> -->
     <div id='select_folder' v-if="!store.state.General.folder">
         <div>
