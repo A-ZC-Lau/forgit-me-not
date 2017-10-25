@@ -200,8 +200,7 @@
         width: 250px;
     }
 
-    .main-view {
-        background-color: orange;
+    main {
         flex-grow: 1;
     }
 </style>
