@@ -1,0 +1,7 @@
+<section>
+    <div v-if="!store.state.General.selection">
+        Make a selection from the left
+    </div>
+
+    <textarea spellcheck="true" ref="textarea" v-on:keydown.tab.prevent="insert_tab"></textarea>
+</section>

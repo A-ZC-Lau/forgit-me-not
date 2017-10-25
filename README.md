@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # forgit-me-not
 
 > A Vue.js project
@@ -29,3 +30,6 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# forgit-me-not
+>>>>>>> 2badf943d8a3e1e2f23f958c03ec2f32b0fd8b21
