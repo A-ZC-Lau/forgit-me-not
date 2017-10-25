@@ -1,11 +1,4 @@
-<template>
-    <div id="app">
-        <aside id="sidebar">
-            Side bar
-        </aside>
-        <router-view class='main-view'/>
-    </div>
-</template>
+<template src='./App.html'></template>
 
 <script>
     const electron = window.require('electron')
@@ -14,10 +7,43 @@
     import $ from 'jquery'
     require('jquery-ui/ui/widgets/resizable.js')
     require('jquery-ui/themes/base/resizable.css')
+    const fs = window.require('fs')
     // import('jquery-ui/')
+
+    import store from '@/store'
+    import Main from '@/components/Main'
+    import Sidebar from '@/components/Sidebar'
+    const path = require('path');
 
     export default {
         name: 'app',
+        components: {
+            'writing': Main,
+            'sidebar': Sidebar
+        },
+        data() {
+            return {
+                store,
+                the_component: ""
+            }
+        },
+        methods: {
+            open_folder() {
+                let the_folder = electron.remote.dialog.showOpenDialog({properties: ['openDirectory']});
+                the_folder = the_folder[0]
+
+                let folders = ["collections", "chapters"]
+                for (let folder of folders)
+                {
+                    let location = path.join(the_folder, folder)
+                    if (!fs.existsSync(location)){
+                        fs.mkdirSync(location);
+                    }
+                }
+
+                store.commit('set_folder', {folder: the_folder})
+            }
+        },
         created() {
             const template = [
                 {
@@ -133,7 +159,7 @@
         mounted () {
             $( "#sidebar" ).resizable({
                 maxHeight: "100vh",
-                minWidth: 100
+                minWidth: 140
             });
         }
     }
@@ -150,11 +176,22 @@
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
         display: flex;
         height: 100vh;
         overflow: hidden;
+        text-align: center;
+        width: 100vw;
+    }
+
+    #select_folder {
+        align-items: center;
+        background-color: lightblue;
+        display: flex;
+        font-size: 2.5em;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
     }
 
     aside {
@@ -167,5 +204,4 @@
         background-color: orange;
         flex-grow: 1;
     }
-
 </style>
