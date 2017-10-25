@@ -1,0 +1,13 @@
+<section>
+    <article v-for="(folder, index) in folders">
+        <header>{{ folder }}</header>
+        <div>
+            <button>Add</button>
+        </div>
+        <ul>
+            <li v-for="collection in return_files(folder)" v-bind:data-folder="folder">
+                {{ collection }}
+            </li>
+        </ul>
+    </article>
+</section>
