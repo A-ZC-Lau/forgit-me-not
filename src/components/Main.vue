@@ -7,8 +7,10 @@
     import store from '@/store'
     import $ from 'jquery'
     var autosize = require('autosize')
+    const path = require('path')
 
     import Vue from 'vue'
+    import { save_file } from '@/global.js'
 
     Vue.component('collection', {
         template: `
@@ -44,9 +46,7 @@
                 t.value = t.value.substring(0, start) + "\t" + t.value.substring(end)
                 t.selectionStart = t.selectionEnd = start + 1;
             },
-            save_file() {
-
-            }
+            save_file
         },
         watch: {
             folder: function() {
