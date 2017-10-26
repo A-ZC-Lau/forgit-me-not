@@ -1,13 +1,19 @@
-<section>
+<section ref="wrapper">
+    <div>
+        <button v-on:click="update_files()">Refresh</button>
+    </div>
     <article v-for="(folder, index) in folders">
         <header>{{ folder }}</header>
         <div>
             <button v-on:click="add(folder)">Add</button>
         </div>
         <ul>
-            <li v-for="(file, index) in files[folder]" v-bind:data-folder="folder">
+            <li v-for="(file, index) in files[folder]" v-bind:data-folder="folder" v-on:click="load_file({folder, file})">
                 {{ file }}
             </li>
         </ul>
     </article>
+
+    <!-- This is a button toggling the modal -->
+    <button uk-toggle="target: #my-id" type="button">Open modal</button>
 </section>
