@@ -143,18 +143,6 @@
 
             const menu = Menu.buildFromTemplate(template)
             Menu.setApplicationMenu(menu)
-
-
-            // pop up menu
-            const popup_menu = new Menu()
-            popup_menu.append(new MenuItem({label: 'MenuItem1', click() { console.log('item 1 clicked') }}))
-            popup_menu.append(new MenuItem({type: 'separator'}))
-            popup_menu.append(new MenuItem({label: 'MenuItem2', type: 'checkbox', checked: true}))
-
-            window.addEventListener('contextmenu', (e) => {
-              e.preventDefault()
-              popup_menu.popup(electron.remote.getCurrentWindow())
-            }, false)
         },
         mounted () {
             $( "#sidebar" ).resizable({
