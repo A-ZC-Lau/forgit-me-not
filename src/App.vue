@@ -9,6 +9,10 @@
     require('jquery-ui/themes/base/resizable.css')
     const fs = window.require('fs')
     // import('jquery-ui/')
+    require('materialize-css/dist/js/materialize.min.js')
+    import 'materialize-css/dist/css/materialize.min.css'
+    require('uikit')
+    import 'uikit/dist/css/uikit.min.css'
 
     import store from '@/store'
     import Main from '@/components/Main'
