@@ -23,22 +23,17 @@
             this.update_files()
         },
         mounted() {
-            $( "#sidebar" ).resizable({
-                maxHeight: 250,
-                maxWidth: 350,
-                minHeight: 150,
-                minWidth: 200
-            });
-
             // pop up menu
             const popup_menu = new Menu()
             popup_menu.append(new MenuItem({label: 'MenuItem1', click() { console.log('item 1 clicked') }}))
             popup_menu.append(new MenuItem({type: 'separator'}))
             popup_menu.append(new MenuItem({label: 'MenuItem2', type: 'checkbox', checked: true}))
             this.$refs.wrapper.addEventListener('contextmenu', (e) => {
-              e.preventDefault()
-              popup_menu.popup(electron.remote.getCurrentWindow())
+                e.preventDefault()
+                popup_menu.popup(electron.remote.getCurrentWindow())
             }, false)
+
+
         },
         methods: {
             add (folder) {
