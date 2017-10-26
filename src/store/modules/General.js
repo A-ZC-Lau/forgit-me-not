@@ -1,7 +1,8 @@
 const state = {
-    main: 0,
+    content: null,
     folder: null,
-    selection: null
+    main: 0,
+    type: null
 }
 
 const mutations = {
@@ -11,9 +12,13 @@ const mutations = {
     INCREMENT_MAIN_COUNTER (state) {
         state.main++
     },
+    set_content (state, payload) {
+        state.content = payload.content
+        state.type = payload.type
+    },
     set_folder (state, payload) {
         state.folder = payload.folder
-    }
+    },
 }
 
 const actions = {
