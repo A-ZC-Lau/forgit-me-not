@@ -8,7 +8,7 @@
     import $ from 'jquery'
 
     import store from '@/store'
-    import { select_root } from '@/global.js'
+    import { save_file, select_root } from '@/global.js'
 
     export default {
         data() {
@@ -55,22 +55,7 @@
             },
             load_file ({folder, file}) {
                 // save current file first
-                let { root, folder: old_folder, file: old_file } = store.state.General
-
-                if (old_folder !== null && old_file !== null)
-                {
-                    if (old_folder === "chapters")
-                    {
-                        let old_location = path.join(root, old_folder, old_file);
-                        let old_content = $("#textarea").val()
-                        fs.writeFile(old_location, old_content, (err) => {
-                            if (err)
-                            {
-                                console.error(err)
-                            }
-                        })
-                    }
-                }
+                save_file()
 
                 // load new file
                 let new_location = path.join(store.state.General.root, folder, file);
@@ -83,21 +68,6 @@
                     content = JSON.parse(content)
                 }
                 store.commit('set_content', {folder, content, file})
-            },
-            save_file ()
-            {
-                let { root, folder, file } = store.state.General
-                if (folder === "chapters")
-                {
-                    let location = path.join(root, folder, file);
-                    let content = $("#textarea").val()
-                    fs.writeFile(location, content, (err) => {
-                        if (err)
-                        {
-                            console.error(err)
-                        }
-                    })
-                }
             },
             select_root,
             return_files (folder) {
