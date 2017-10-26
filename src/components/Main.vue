@@ -46,4 +46,8 @@
         tab-size: 1.5em;
         width: 100%;
     }
+
+    #textarea-wrapper {
+        padding: 0.5em;
+    }
 </style>
