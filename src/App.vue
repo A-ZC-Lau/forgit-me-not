@@ -13,11 +13,12 @@
     import 'materialize-css/dist/css/materialize.min.css'
     require('uikit')
     import 'uikit/dist/css/uikit.min.css'
+    const path = require('path');
 
     import store from '@/store'
     import Main from '@/components/Main'
     import Sidebar from '@/components/Sidebar'
-    const path = require('path');
+    import { select_root } from './global.js'
 
     export default {
         name: 'app',
@@ -32,21 +33,7 @@
             }
         },
         methods: {
-            select_root() {
-                let the_root = electron.remote.dialog.showOpenDialog({properties: ['openDirectory']});
-                the_root = the_root[0]
-
-                let folders = ["collections", "chapters"]
-                for (let folder of folders)
-                {
-                    let location = path.join(the_root, folder)
-                    if (!fs.existsSync(location)){
-                        fs.mkdirSync(location);
-                    }
-                }
-
-                store.commit('set_root', {root: the_root})
-            }
+            select_root
         },
         created() {
             const template = [
