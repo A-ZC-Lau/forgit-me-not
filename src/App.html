@@ -1,12 +1,14 @@
 <div id="app">
-    <aside id="sidebar" v-if="store.state.General.folder">
-        <sidebar/>
-    </aside>
-    <main v-if="store.state.General.folder">
-        <writing/>
-    </main>
+    <template v-if="store.state.General.root">
+        <aside id="sidebar">
+            <sidebar/>
+        </aside>
+        <main v-if="store.state.General.root">
+            <writing/>
+        </main>
+    </template>
     <!-- <router-view class='main-view' v-if="store.state.General.folder"/> -->
-    <div id='select_folder' v-if="!store.state.General.folder">
+    <div id='select_folder' v-else>
         <div>
             <div>
                 Select a folder to begin
