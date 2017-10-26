@@ -105,7 +105,7 @@
 
             if (electron.remote.process.platform === 'darwin') {
               template.unshift({
-                label: app.getName(),
+                label: electron.remote.app.getName(),
                 submenu: [
                   {role: 'about'},
                   {type: 'separator'},
