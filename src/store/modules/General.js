@@ -1,12 +1,13 @@
 const state = {
-    content: null,
-    folder: null,
+    content: null, // content of the file
+    file: null, // name of the file
+    folder: null, // the selected folder - collections / chapters
+    root: null, // the root folder
     main: 0,
     modal: {
         title: null,
         content: null
-    },
-    type: null
+    }
 }
 
 const mutations = {
@@ -19,9 +20,10 @@ const mutations = {
     set_content (state, payload) {
         state.content = payload.content
         state.type = payload.type
+        state.file = payload.file
     },
-    set_folder (state, payload) {
-        state.folder = payload.folder
+    set_root (state, payload) {
+        state.folder = payload.root
     },
 }
 
