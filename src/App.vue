@@ -32,20 +32,20 @@
             }
         },
         methods: {
-            open_folder() {
-                let the_folder = electron.remote.dialog.showOpenDialog({properties: ['openDirectory']});
-                the_folder = the_folder[0]
+            select_root() {
+                let the_root = electron.remote.dialog.showOpenDialog({properties: ['openDirectory']});
+                the_root = the_root[0]
 
                 let folders = ["collections", "chapters"]
                 for (let folder of folders)
                 {
-                    let location = path.join(the_folder, folder)
+                    let location = path.join(the_root, folder)
                     if (!fs.existsSync(location)){
                         fs.mkdirSync(location);
                     }
                 }
 
-                store.commit('set_folder', {folder: the_folder})
+                store.commit('set_root', {root: the_root})
             }
         },
         created() {
