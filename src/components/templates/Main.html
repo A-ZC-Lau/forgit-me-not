@@ -12,6 +12,6 @@
     </article>
 
     <article id="textarea-wrapper" v-if="store.state.General.type === 'chapters'">
-        <textarea spellcheck="true" ref="textarea" @keydown.tab.prevent="insert_tab" v-bind:value="store.state.General.content"></textarea>
+        <textarea id="textarea" spellcheck="true" ref="textarea" @keydown.tab.prevent="insert_tab" v-bind:value="store.state.General.content"></textarea>
     </article>
 </section>
