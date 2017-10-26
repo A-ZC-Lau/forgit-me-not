@@ -23,8 +23,8 @@
             }
         },
         computed: {
-            type: function() {
-                return store.state.General.type
+            folder: function() {
+                return store.state.General.folder
             }
         },
         mounted() {
@@ -49,8 +49,8 @@
             }
         },
         watch: {
-            type: function() {
-                if (store.state.General.type === "chapters")
+            folder: function() {
+                if (store.state.General.folder === "chapters")
                 {
                     this.$nextTick( function() {
                         autosize(this.$refs.textarea)
