@@ -2,6 +2,10 @@ const state = {
     content: null,
     folder: null,
     main: 0,
+    modal: {
+        title: null,
+        content: null
+    },
     type: null
 }
 
