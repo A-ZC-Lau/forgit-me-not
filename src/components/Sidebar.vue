@@ -1,6 +1,7 @@
 <template src="./templates/Sidebar.html"></template>
 
 <script>
+    const electron = window.require('electron')
     const fs = window.require('fs')
     const path = require('path')
     import $ from 'jquery'
@@ -10,25 +11,15 @@
     export default {
         data() {
             return {
+                files: {},
                 folders: ['collections', 'chapters'],
                 store
             }
         },
         computed: {
-            files() {
-                let obj = {}
-
-                for (let folder in this.folders)
-                {
-                    obj[folder]
-                }
-            },
-            chapters() {
-                return this.return_files('chapters')
-            },
-            collections() {
-                return this.return_files('collections')
-            },
+        },
+        created() {
+            this.update_files()
         },
         mounted() {
             $( "#sidebar" ).resizable({
@@ -39,10 +30,34 @@
             });
         },
         methods: {
+            add (folder) {
+                let location = path.join(store.state.General.folder, folder)
+                let filename = electron.remote.dialog.showSaveDialog({title: "New file", defaultPath: location});
+
+                if (filename)
+                {
+                    fs.writeFile(filename, '', (err) => {
+                        if (err)
+                        {
+                            console.error(err)
+                        }
+                    })
+                    this.update_files()
+                }
+            },
             return_files (folder) {
                 let location = path.join(store.state.General.folder, folder)
                 var return_files;
+                console.log()
                 return fs.readdirSync(location)
+            },
+            update_files() {
+                let obj = {}
+                for (let folder of this.folders)
+                {
+                    this.$set(this.files, folder, this.return_files(folder))
+                }
+                console.log(this.files)
             }
         }
     }
