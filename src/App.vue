@@ -9,6 +9,10 @@
     require('jquery-ui/themes/base/resizable.css')
     const fs = window.require('fs')
     // import('jquery-ui/')
+    require('materialize-css/dist/js/materialize.min.js')
+    import 'materialize-css/dist/css/materialize.min.css'
+    require('uikit')
+    import 'uikit/dist/css/uikit.min.css'
 
     import store from '@/store'
     import Main from '@/components/Main'
@@ -28,20 +32,20 @@
             }
         },
         methods: {
-            open_folder() {
-                let the_folder = electron.remote.dialog.showOpenDialog({properties: ['openDirectory']});
-                the_folder = the_folder[0]
+            select_root() {
+                let the_root = electron.remote.dialog.showOpenDialog({properties: ['openDirectory']});
+                the_root = the_root[0]
 
                 let folders = ["collections", "chapters"]
                 for (let folder of folders)
                 {
-                    let location = path.join(the_folder, folder)
+                    let location = path.join(the_root, folder)
                     if (!fs.existsSync(location)){
                         fs.mkdirSync(location);
                     }
                 }
 
-                store.commit('set_folder', {folder: the_folder})
+                store.commit('set_root', {root: the_root})
             }
         },
         created() {
@@ -105,7 +109,7 @@
 
             if (electron.remote.process.platform === 'darwin') {
               template.unshift({
-                label: app.getName(),
+                label: electron.remote.app.getName(),
                 submenu: [
                   {role: 'about'},
                   {type: 'separator'},
@@ -143,18 +147,6 @@
 
             const menu = Menu.buildFromTemplate(template)
             Menu.setApplicationMenu(menu)
-
-
-            // pop up menu
-            const popup_menu = new Menu()
-            popup_menu.append(new MenuItem({label: 'MenuItem1', click() { console.log('item 1 clicked') }}))
-            popup_menu.append(new MenuItem({type: 'separator'}))
-            popup_menu.append(new MenuItem({label: 'MenuItem2', type: 'checkbox', checked: true}))
-
-            window.addEventListener('contextmenu', (e) => {
-              e.preventDefault()
-              popup_menu.popup(electron.remote.getCurrentWindow())
-            }, false)
         },
         mounted () {
             $( "#sidebar" ).resizable({

@@ -1,7 +1,17 @@
 <section>
-    <div v-if="!store.state.General.selection">
+    <div>
+        <button>Save</button>
+    </div>
+
+    <div v-if="!store.state.General.type">
         Make a selection from the left
     </div>
 
-    <textarea spellcheck="true" ref="textarea" v-on:keydown.tab.prevent="insert_tab"></textarea>
+    <article v-if="store.state.General.type === 'collections'">
+        <button @click="add_group" v-if="!store.state.General.content.length">Add group</button>
+    </article>
+
+    <article id="textarea-wrapper" v-if="store.state.General.type === 'chapters'">
+        <textarea id="textarea" spellcheck="true" ref="textarea" @keydown.tab.prevent="insert_tab" v-bind:value="store.state.General.content"></textarea>
+    </article>
 </section>

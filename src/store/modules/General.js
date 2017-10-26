@@ -1,7 +1,13 @@
 const state = {
+    content: null, // content of the file
+    file: null, // name of the file
+    folder: null, // the selected folder - collections / chapters
+    root: null, // the root folder
     main: 0,
-    folder: null,
-    selection: null
+    modal: {
+        title: null,
+        content: null
+    }
 }
 
 const mutations = {
@@ -11,9 +17,14 @@ const mutations = {
     INCREMENT_MAIN_COUNTER (state) {
         state.main++
     },
-    set_folder (state, payload) {
+    set_content (state, payload) {
+        state.content = payload.content
         state.folder = payload.folder
-    }
+        state.file = payload.file
+    },
+    set_root (state, payload) {
+        state.root = payload.root
+    },
 }
 
 const actions = {
