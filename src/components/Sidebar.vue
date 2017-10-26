@@ -53,14 +53,31 @@
                 }
             },
             load_file ({folder, file}) {
-                let location = path.join(store.state.General.folder, folder, file);
-                let content = fs.readFileSync(location, 'utf8')
+                // save current file first
+                let { root, folder: old_folder, file: old_file } = store.state.General
+
+                console.log("oldfolder: ", old_folder)
+                if (old_folder !== null && old_file !== null)
+                {
+                    // let old_location = path.join(root, old_folder, old_file);
+                    // let old_content = $("#textarea").val()
+                    // fs.writeFile(old_location, old_content, (err) => {
+                    //     if (err)
+                    //     {
+                    //         console.error(err)
+                    //     }
+                    // })
+                }
+
+                // load new file
+                let new_location = path.join(store.state.General.folder, folder, file);
+                let content = fs.readFileSync(new_location, 'utf8')
 
                 if (folder === "collections")
                 {
                     content = JSON.parse(content)
                 }
-                store.commit('set_content', {type: folder, content})
+                store.commit('set_content', {folder, content, file})
             },
             return_files (folder) {
                 let location = path.join(store.state.General.folder, folder)
