@@ -1,6 +1,7 @@
 <section ref="wrapper">
     <div>
-        <button v-on:click="update_files()">Refresh</button>
+        <button v-on:click="update_files">Refresh</button>
+        <button v-on:click="select_root">Select folder</button>
     </div>
     <article v-for="(folder, index) in folders">
         <header>{{ folder }}</header>
