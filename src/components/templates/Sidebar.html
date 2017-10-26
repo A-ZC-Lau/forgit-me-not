@@ -2,11 +2,11 @@
     <article v-for="(folder, index) in folders">
         <header>{{ folder }}</header>
         <div>
-            <button>Add</button>
+            <button v-on:click="add(folder)">Add</button>
         </div>
         <ul>
-            <li v-for="collection in return_files(folder)" v-bind:data-folder="folder">
-                {{ collection }}
+            <li v-for="(file, index) in files[folder]" v-bind:data-folder="folder">
+                {{ file }}
             </li>
         </ul>
     </article>
