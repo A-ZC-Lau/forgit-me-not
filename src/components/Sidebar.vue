@@ -56,10 +56,12 @@
                 // save current file first
                 let { root, folder: old_folder, file: old_file } = store.state.General
 
+                console.log("root: ", root)
                 console.log("oldfolder: ", old_folder)
                 if (old_folder !== null && old_file !== null)
                 {
-                    // let old_location = path.join(root, old_folder, old_file);
+                    let old_location = path.join(root, old_folder, old_file);
+                    console.log(old_location);
                     // let old_content = $("#textarea").val()
                     // fs.writeFile(old_location, old_content, (err) => {
                     //     if (err)
@@ -80,7 +82,7 @@
                 store.commit('set_content', {folder, content, file})
             },
             return_files (folder) {
-                let location = path.join(store.state.General.folder, folder)
+                let location = path.join(store.state.General.root, folder)
                 let files = fs.readdirSync(location);
 
                 files = files.filter( file => !file.match(/^\./) )
