@@ -8,6 +8,7 @@
     import $ from 'jquery'
 
     import store from '@/store'
+    import { select_root } from '@/global.js'
 
     export default {
         data() {
@@ -37,7 +38,7 @@
         },
         methods: {
             add (folder) {
-                let location = path.join(store.state.General.folder, folder)
+                let location = path.join(store.state.General.root, folder)
                 let filename = electron.remote.dialog.showSaveDialog({title: "New file", defaultPath: location});
 
                 if (filename)
@@ -56,24 +57,26 @@
                 // save current file first
                 let { root, folder: old_folder, file: old_file } = store.state.General
 
-                console.log("root: ", root)
-                console.log("oldfolder: ", old_folder)
                 if (old_folder !== null && old_file !== null)
                 {
-                    let old_location = path.join(root, old_folder, old_file);
-                    console.log(old_location);
-                    // let old_content = $("#textarea").val()
-                    // fs.writeFile(old_location, old_content, (err) => {
-                    //     if (err)
-                    //     {
-                    //         console.error(err)
-                    //     }
-                    // })
+                    if (old_folder === "chapters")
+                    {
+                        let old_location = path.join(root, old_folder, old_file);
+                        let old_content = $("#textarea").val()
+                        fs.writeFile(old_location, old_content, (err) => {
+                            if (err)
+                            {
+                                console.error(err)
+                            }
+                        })
+                    }
                 }
 
                 // load new file
-                let new_location = path.join(store.state.General.folder, folder, file);
+                let new_location = path.join(store.state.General.root, folder, file);
                 let content = fs.readFileSync(new_location, 'utf8')
+
+                console.log(content)
 
                 if (folder === "collections")
                 {
@@ -81,6 +84,22 @@
                 }
                 store.commit('set_content', {folder, content, file})
             },
+            save_file ()
+            {
+                let { root, folder, file } = store.state.General
+                if (folder === "chapters")
+                {
+                    let location = path.join(root, folder, file);
+                    let content = $("#textarea").val()
+                    fs.writeFile(location, content, (err) => {
+                        if (err)
+                        {
+                            console.error(err)
+                        }
+                    })
+                }
+            },
+            select_root,
             return_files (folder) {
                 let location = path.join(store.state.General.root, folder)
                 let files = fs.readdirSync(location);
