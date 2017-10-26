@@ -19,11 +19,11 @@ const mutations = {
     },
     set_content (state, payload) {
         state.content = payload.content
-        state.type = payload.type
+        state.folder = payload.folder
         state.file = payload.file
     },
     set_root (state, payload) {
-        state.folder = payload.root
+        state.root = payload.root
     },
 }
 
