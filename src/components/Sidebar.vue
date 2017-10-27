@@ -5,6 +5,7 @@
     const { Menu, MenuItem } = electron.remote
     const fs = window.require('fs')
     const path = require('path')
+    const url = require('url')
     import $ from 'jquery'
 
     import Modal from '@/components/Modal'
@@ -38,7 +39,10 @@
                 popup_menu.popup(electron.remote.getCurrentWindow())
             }, false)
 
-
+            electron.remote.ipcMain.on('item:add', function(e, item){
+                mainWindow.webContents.send('item:add', item);
+                addWindow.close();
+            });
         },
         methods: {
             add (folder) {
@@ -56,6 +60,28 @@
                     })
                     this.update_files()
                 }
+            },
+            add_thing () {
+                var win = new electron.remote.BrowserWindow({
+                    height: 300,
+                    width: 500,
+                    title: "open test"
+                })
+
+                let live = false
+                let format = live ?
+                    url.format({
+                        pathname: path.join(__dirname, 'dist/index.html#input'),
+                        protocol: 'file:',
+                        slashes: true,
+                    })
+                    :
+                    'http://localhost:8080/#/input'
+                win.loadURL(format);
+
+                win.on('close', function () {
+                    win = null
+                })
             },
             load_file ({folder, file}) {
                 // save current file first
