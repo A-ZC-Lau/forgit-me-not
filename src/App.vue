@@ -19,12 +19,14 @@
     import Main from '@/components/Main'
     import Sidebar from '@/components/Sidebar'
     import { select_root } from './global.js'
+    import Modal from '@/components/Modal'
 
     export default {
         name: 'app',
         components: {
             'writing': Main,
-            'sidebar': Sidebar
+            'sidebar': Sidebar,
+            'Modal': Modal
         },
         data() {
             return {
