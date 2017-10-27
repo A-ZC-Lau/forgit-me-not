@@ -7,6 +7,7 @@
     const path = require('path')
     import $ from 'jquery'
 
+    import Modal from '@/components/Modal'
     import store from '@/store'
     import { save_file, select_root } from '@/global.js'
 
@@ -17,6 +18,9 @@
                 folders: ['collections', 'chapters'],
                 store
             }
+        },
+        components: {
+            'Modal': Modal
         },
         computed: {
         },
