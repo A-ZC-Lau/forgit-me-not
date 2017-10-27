@@ -24,8 +24,8 @@
     export default {
         name: 'app',
         components: {
-            'writing': Main,
-            'sidebar': Sidebar,
+            'Writing': Main,
+            'Sidebar': Sidebar,
             'Modal': Modal
         },
         data() {
@@ -142,6 +142,7 @@
                 maxHeight: "100vh",
                 minWidth: 140
             });
+            console.log(this.$route)
         }
     }
 </script>
