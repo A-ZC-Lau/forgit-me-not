@@ -1,10 +1,10 @@
 <div id="app">
     <template v-if="store.state.General.root">
         <aside id="sidebar">
-            <sidebar/>
+            <Sidebar/>
         </aside>
         <main>
-            <writing/>
+            <Writing/>
         </main>
     </template>
     <!-- <router-view class='main-view' v-if="store.state.General.folder"/> -->
@@ -16,6 +16,5 @@
             <button v-on:click="select_root">Select folder</button>
         </div>
     </div>
-
-    <Modal />
+    <!-- <Modal /> -->
 </div>
