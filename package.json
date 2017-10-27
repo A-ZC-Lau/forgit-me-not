@@ -1,7 +1,7 @@
 {
   "name": "forgit-me-not",
   "version": "1.0.0",
-  "description": "open source writing software with version control",
+  "description": "open source writing software with variable substitution and version control",
   "author": "Alexander Lau <alexanderlau25@hotmail.com>",
   "private": true,
   "license": "GPL-3.0",
