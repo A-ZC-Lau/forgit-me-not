@@ -1,6 +1,6 @@
 <template>
     <!-- This is the modal -->
-    <div id="my-id" uk-modal>
+    <div id="my-id" uk-modal class="uk-modal">
         <div class="uk-modal-dialog uk-modal-body">
             <h2 class="uk-modal-title">Add Group</h2>
             <div class="uk-modal-body">
