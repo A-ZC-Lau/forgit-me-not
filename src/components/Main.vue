@@ -12,13 +12,27 @@
     import Vue from 'vue'
     import { save_file } from '@/global.js'
 
-    Vue.component('collection', {
+    var collection = Vue.component('collection', {
+        computed: {
+            new_counter: function() {
+                return this.counter - 1
+            }
+        },
+        props: [
+            "counter"
+        ],
         template: `
-
+            <div v-if="counter > 0">
+                stats
+                <collection :counter="new_counter"></collection>
+            </div>
         `
     })
 
     export default {
+        components: {
+            'collection': collection
+        },
         data() {
             return {
                 store
