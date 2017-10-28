@@ -10,9 +10,9 @@
     const fs = window.require('fs')
     // import('jquery-ui/')
     require('materialize-css/dist/js/materialize.min.js')
-    import 'materialize-css/dist/css/materialize.min.css'
+    require('materialize-css/dist/css/materialize.min.css')
     require('uikit')
-    import 'uikit/dist/css/uikit.min.css'
+    require('uikit/dist/css/uikit.min.css')
     const path = require('path');
 
     import store from '@/store'
