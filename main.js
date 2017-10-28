@@ -1,13 +1,14 @@
 // ./main.js
 const {app, BrowserWindow} = require('electron')
+const url = require('url')
+const path = require('path')
 
-let win = null;
-let live = false;
+let win = null
+let live = false
 
 app.on('ready', function () {
-
     // Initialize the window to our specified dimensions
-    win = new BrowserWindow({width: 1000, height: 600});
+    win = new BrowserWindow({width: 1000, height: 600})
 
     let format = live ?
         url.format({
@@ -24,8 +25,8 @@ app.on('ready', function () {
     win.on('closed', function () {
         win = null;
     });
-
 });
+
 //create the application window if the window variable is null
 app.on('activate', () => {
     if (win === null) {
