@@ -8,23 +8,23 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# Starts local server + runs electron. Make sure you reload electron once the server is running so it displays correct content
+npm start
 
 # build for production with minification
 npm run build
-# Make sure you remove leading '/' in src in the dist/index.html
+# Make sure you remove leading '/' in src and href in the dist/index.html
 
 # build for production and view the bundle analyzer report
 npm run build --report
 
-# make sure you've ran "npm run build" first and removed leading '/' in dist/index.html
+# make sure you've ran "npm run build" first
 # package for mac
 npm run package-mac
 # package for windows
 npm run package-win
 # package for linux
-npm run package-linux 
+npm run package-linux
 
 # no tests yet
 # run unit tests
