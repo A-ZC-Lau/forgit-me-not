@@ -17,6 +17,10 @@
             return {
                 files: {},
                 folders: ['collections', 'chapters'],
+                modal: {
+                    title: null,
+                    type: null
+                },
                 store
             }
         },
@@ -71,7 +75,7 @@
                 let live = false
                 let format = live ?
                     url.format({
-                        pathname: path.join(__dirname, 'dist/index.html#input'),
+                        pathname: path.join(__dirname, 'dist/index.html#/input'),
                         protocol: 'file:',
                         slashes: true,
                     })
@@ -99,7 +103,6 @@
                 }
                 store.commit('set_content', {folder, content, file})
             },
-            select_root,
             return_files (folder) {
                 let location = path.join(store.state.General.root, folder)
                 let files = fs.readdirSync(location);
@@ -108,6 +111,7 @@
 
                 return files
             },
+            select_root,
             update_files() {
                 let obj = {}
                 for (let folder of this.folders)
