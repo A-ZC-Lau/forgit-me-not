@@ -10,6 +10,7 @@
     const path = require('path')
 
     import Vue from 'vue'
+    import Modal from '@/components/Modal'
     import { save_file } from '@/global.js'
 
     var collection = Vue.component('collection', {
@@ -31,11 +32,13 @@
 
     export default {
         components: {
-            'collection': collection
+            'collection': collection,
+            'Modal': Modal
         },
         data() {
             return {
-                store
+                store,
+                type: null
             }
         },
         computed: {
@@ -50,8 +53,11 @@
             add_group() {
 
             },
-            add_item() {
-
+            add_item(value) {
+                console.log("add item", value)
+            },
+            change_type(type) {
+                this.type = type
             },
             insert_tab() {
                 var t = this.$refs.textarea
@@ -79,8 +85,9 @@
     section {
         background-color: orange;
         flex: 1;
-        overflow: auto;
         max-height: 100vh;
+        overflow: auto;
+        text-align: left;
         width: 100%;
     }
 
@@ -91,6 +98,17 @@
         padding: 0.5em;
         tab-size: 1.5em;
         width: 100%;
+    }
+
+    ul:before {
+        content: attr(title);
+        font-weight: bold;
+        font-size: 1.5em;
+        padding-left: 0;
+    }
+
+    ul {
+        padding-left: 1em;
     }
 
     #textarea-wrapper {
