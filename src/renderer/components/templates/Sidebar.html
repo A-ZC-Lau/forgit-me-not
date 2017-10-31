@@ -1,0 +1,24 @@
+<section ref="wrapper">
+    <div>
+        <button v-on:click="update_files">Refresh</button>
+        <button v-on:click="select_root">Select folder</button>
+    </div>
+    <article v-for="(folder, index) in folders">
+        <header>{{ folder }}</header>
+        <div>
+            <button v-on:click="add(folder)">Add</button>
+        </div>
+        <ul>
+            <li v-for="(file, index) in files[folder]" v-bind:data-folder="folder" v-on:click="load_file({folder, file})">
+                {{ file }}
+            </li>
+        </ul>
+    </article>
+
+    <button @click="add_thing">New Window</button>
+
+    <!-- This is a button toggling the modal -->
+    <button uk-toggle="target: #my-id" type="button">Open modal</button>
+
+    <a href="#my-id" data-uk-modal>a open modal</a>
+</section>
