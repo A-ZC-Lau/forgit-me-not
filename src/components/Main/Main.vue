@@ -22,7 +22,8 @@
         },
         data() {
             return {
-                store
+                store,
+                folder: store.state.General.folder
             }
         },
         methods: {
