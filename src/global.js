@@ -2,6 +2,7 @@ const electron = window.require('electron')
 const path = require('path')
 const fs = window.require('fs')
 import store from '@/store'
+import $ from 'jquery'
 
 export var save_file = function ()
 {
