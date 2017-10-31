@@ -11,6 +11,7 @@
 
     import Vue from 'vue'
     import Modal from '@/components/Modal'
+    import CollectionList from '@/components/Main/Writing/CollectionList/CollectionList'
     import { save_file } from '@/global.js'
 
     var collection = Vue.component('collection', {
@@ -32,6 +33,7 @@
 
     export default {
         components: {
+            'CollectionList': CollectionList,
             'collection': collection,
             'Modal': Modal
         },
@@ -98,17 +100,6 @@
         padding: 0.5em;
         tab-size: 1.5em;
         width: 100%;
-    }
-
-    ul:before {
-        content: attr(title);
-        font-weight: bold;
-        font-size: 1.5em;
-        padding-left: 0;
-    }
-
-    ul {
-        padding-left: 1em;
     }
 
     #textarea-wrapper {
