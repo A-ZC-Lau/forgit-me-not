@@ -1,0 +1,49 @@
+<section>
+    <div>
+        <button @click="save_file">Save</button>
+    </div>
+
+    <collection :counter="3"></collection>
+
+    <div v-if="!store.state.General.folder">
+        Make a selection from the left please
+    </div>
+
+    <article v-if="store.state.General.folder === 'collections'">
+        <button uk-toggle="target: #my-id" type="button">Open modal</button>
+        <button
+            @click="change_type('group')"
+            v-if="!store.state.General.content.length"
+            uk-toggle="target: #my-id"
+            type="button"
+        >
+            Add group
+        </button>
+        <button
+            @click="change_type('item')"
+            v-if="!store.state.General.content.length"
+            uk-toggle="target: #my-id"
+            type="button"
+        >
+            Add item
+        </button>
+        <ul title="test me">
+            <li>
+                stuff
+            </li>
+        </ul>
+    </article>
+
+    <article id="textarea-wrapper" v-if="store.state.General.folder === 'chapters'">
+        <textarea
+            id="textarea"
+            ref="textarea"
+            spellcheck="true"
+            @keydown.tab.prevent="insert_tab"
+            v-bind:value="store.state.General.content"
+        >
+        </textarea>
+    </article>
+
+    <Modal :add_item="add_item" :type="type" />
+</section>

@@ -4,39 +4,11 @@
     const electron = window.require('electron')
     // const fs = window.require("fs")
     const { Menu, MenuItem } = electron.remote
-    import $ from 'jquery'
-    require('jquery-ui/ui/widgets/resizable.js')
-    require('jquery-ui/themes/base/resizable.css')
-    const fs = window.require('fs')
-    // import('jquery-ui/')
-    require('materialize-css/dist/js/materialize.min.js')
-    require('materialize-css/dist/css/materialize.min.css')
-    require('uikit')
-    require('uikit/dist/css/uikit.min.css')
-    const path = require('path');
 
-    import store from '@/store'
-    import Main from '@/components/Main'
-    import Sidebar from '@/components/Sidebar'
-    import { select_root } from './global.js'
-    import Modal from '@/components/Modal'
+    const path = require('path');
 
     export default {
         name: 'app',
-        components: {
-            'Writing': Main,
-            'Sidebar': Sidebar,
-            'Modal': Modal
-        },
-        data() {
-            return {
-                store,
-                the_component: ""
-            }
-        },
-        methods: {
-            select_root
-        },
         created() {
             const template = [
                 {
@@ -136,13 +108,6 @@
 
             const menu = Menu.buildFromTemplate(template)
             Menu.setApplicationMenu(menu)
-        },
-        mounted () {
-            $( "#sidebar" ).resizable({
-                maxHeight: "100vh",
-                minWidth: 140
-            });
-            console.log(this.$route)
         }
     }
 </script>
@@ -153,36 +118,6 @@
         padding: 0px;
     }
 </style>
+
 <style scoped>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
-        display: flex;
-        height: 100vh;
-        overflow: hidden;
-        text-align: center;
-        width: 100vw;
-    }
-
-    #select_folder {
-        align-items: center;
-        background-color: lightblue;
-        display: flex;
-        font-size: 2.5em;
-        justify-content: center;
-        height: 100%;
-        width: 100%;
-    }
-
-    aside {
-        background-color: lightblue;
-        resize: horizontal;
-        width: 250px;
-    }
-
-    main {
-        flex-grow: 1;
-    }
 </style>

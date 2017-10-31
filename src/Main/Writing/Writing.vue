@@ -1,4 +1,4 @@
-<template src="./templates/Main.html">
+<template src="./Writing.html">
 </template>
 
 <script>

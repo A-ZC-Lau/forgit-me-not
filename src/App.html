@@ -1,20 +1,4 @@
 <div id="app">
-    <template v-if="store.state.General.root">
-        <aside id="sidebar">
-            <Sidebar/>
-        </aside>
-        <main>
-            <Writing/>
-        </main>
-    </template>
-    <!-- <router-view class='main-view' v-if="store.state.General.folder"/> -->
-    <div id='select_folder' v-else>
-        <div>
-            <div>
-                Select a folder to begin
-            </div>
-            <button v-on:click="select_root">Select folder</button>
-        </div>
-    </div>
+    <router-view />
     <!-- <Modal /> -->
 </div>

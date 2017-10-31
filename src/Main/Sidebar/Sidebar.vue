@@ -1,4 +1,4 @@
-<template src="./templates/Sidebar.html"></template>
+<template src="./Sidebar.html"></template>
 
 <script>
     const electron = window.require('electron')
@@ -80,7 +80,7 @@
                         slashes: true,
                     })
                     :
-                    'http://localhost:8080/#/input'
+                    'http://localhost:9080/#/input'
                 win.loadURL(format);
 
                 win.on('close', function () {
