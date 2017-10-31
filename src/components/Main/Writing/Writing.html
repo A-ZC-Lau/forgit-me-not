@@ -9,30 +9,7 @@
         Make a selection from the left
     </div>
 
-    <article v-if="store.state.General.folder === 'collections'">
-        <button uk-toggle="target: #my-id" type="button">Open modal</button>
-        <button
-            @click="change_type('group')"
-            v-if="!store.state.General.content.length"
-            uk-toggle="target: #my-id"
-            type="button"
-        >
-            Add group
-        </button>
-        <button
-            @click="change_type('item')"
-            v-if="!store.state.General.content.length"
-            uk-toggle="target: #my-id"
-            type="button"
-        >
-            Add item
-        </button>
-        <ul title="test me">
-            <li>
-                stuff
-            </li>
-        </ul>
-    </article>
+    <CollectionList />
 
     <article id="textarea-wrapper" v-if="store.state.General.folder === 'chapters'">
         <textarea
