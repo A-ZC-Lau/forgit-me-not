@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+Vue.use(window.require('vue-electron'))
 
 Vue.config.productionTip = false
 
