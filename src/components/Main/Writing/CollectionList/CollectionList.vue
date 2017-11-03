@@ -11,9 +11,15 @@
                 type: null
             }
         },
+        props: [
+            "change_type"
+        ],
         methods: {
-            change_type(type) {
-                this.type = type
+            test() {
+                console.log('test')
+            },
+            theChange_type: function (type) {
+                this.change_type(type)
             }
         },
         mounted() {

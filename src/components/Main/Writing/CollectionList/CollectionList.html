@@ -1,6 +1,6 @@
 <form @submit.prevent v-if="store.state.General.folder === 'collections'">
     <button
-        @click="change_type('group')"
+        @click="test"
         v-if="!store.state.General.content.length"
         uk-toggle="target: #my-id"
         type="button"
@@ -8,7 +8,7 @@
         Add group
     </button>
     <button
-        @click="change_type('item')"
+        @click="theChange_type('item')"
         v-if="!store.state.General.content.length"
         uk-toggle="target: #my-id"
         type="button"
