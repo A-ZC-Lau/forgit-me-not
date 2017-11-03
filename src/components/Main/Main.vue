@@ -8,6 +8,8 @@
     import 'uikit/dist/js/uikit.min.js'
     import 'uikit/dist/css/uikit.min.css'
 
+    import 'font-awesome/css/font-awesome.min.css'
+
     import Writing from '@/components/Main/Writing/Writing'
     import Sidebar from '@/components/Main/Sidebar/Sidebar'
     import { select_root } from '@/global.js'
