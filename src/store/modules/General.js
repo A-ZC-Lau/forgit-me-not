@@ -7,7 +7,8 @@ const state = {
     modal: {
         title: null,
         content: null
-    }
+    },
+    tabs: []
 }
 
 const mutations = {
@@ -25,6 +26,29 @@ const mutations = {
     set_root (state, payload) {
         state.root = payload.root
     },
+    add_tab (state, {name, content}) {
+        console.log('tabs here')
+        console.log(name,content)
+        let shouldAdd = true
+        for (let tab of state.tabs)
+        {
+            if (tab.name === name)
+            {
+                console.log('break tab')
+                shouldAdd = false
+                break
+            }
+        }
+
+        if (shouldAdd)
+        {
+            console.log('add tab')
+            state.tabs = [...state.tabs, {name, content}]
+        }
+    },
+    delete_tab (state, {name}) {
+        state.tabs = state.tabs.filter( tab => tab.name !== name)
+    }
 }
 
 const actions = {
