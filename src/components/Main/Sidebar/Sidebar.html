@@ -6,7 +6,7 @@
     <article v-for="(folder, index) in folders">
         <header>{{ folder }}</header>
         <div>
-            <button v-on:click="add(folder)">Add</button>
+            <button v-on:click="add_file(folder)">Add</button>
         </div>
         <ul>
             <li v-for="(file, index) in files[folder]" v-bind:data-folder="folder" v-on:click="load_file({folder, file})">

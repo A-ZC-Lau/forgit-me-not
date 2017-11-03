@@ -8,6 +8,8 @@
     import $ from 'jquery'
     var autosize = require('autosize')
     const path = require('path')
+    require('uikit/dist/js/uikit.min.js')
+    require('uikit/dist/css/uikit.min.css')
 
     import Vue from 'vue'
     import Modal from '@/components/Modal'
@@ -46,6 +48,9 @@
         computed: {
             folder: function() {
                 return store.state.General.folder
+            },
+            tabs: function() {
+                return store.state.General.tabs
             }
         },
         mounted() {
@@ -68,7 +73,10 @@
                 t.value = t.value.substring(0, start) + "\t" + t.value.substring(end)
                 t.selectionStart = t.selectionEnd = start + 1;
             },
-            save_file
+            save_file,
+            tab_close() {
+                console.log("tab close")
+            }
         },
         watch: {
             folder: function() {
@@ -85,7 +93,7 @@
 
 <style scoped>
     section {
-        background-color: orange;
+        background-color: none;
         flex: 1;
         max-height: 100vh;
         overflow: auto;
@@ -104,5 +112,12 @@
 
     #textarea-wrapper {
         padding: 0.5em;
+    }
+
+    .hover.padding {
+        color: grey;
+    }
+    .hover:hover {
+        color: black;
     }
 </style>

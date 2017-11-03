@@ -5,22 +5,47 @@
 
     <collection :counter="3"></collection>
 
-    <div v-if="!store.state.General.folder">
-        Make a selection from the left
+    <div v-for="tab in tabs">
+        tabs: {{ tab.name }}
+        <div>
+            {{ tab.content }}
+        </div>
     </div>
 
-    <CollectionList />
+    <ul class="uk-tab" data-uk-tab="{connect:'#content'}">
+        <li>
+            <a href="">
+                tab1
+                <i class="fa fa-times hover padding" aria-hidden="true" @click.stop.prevent="tab_close"></i>
+            </a>
+        </li>
+        <li><a href="">2</a></li>
+    </ul>
+<button class="">yes</button>
 
-    <article id="textarea-wrapper" v-if="store.state.General.folder === 'chapters'">
-        <textarea
-            id="textarea"
-            ref="textarea"
-            spellcheck="true"
-            @keydown.tab.prevent="insert_tab"
-            v-bind:value="store.state.General.content"
-        >
-        </textarea>
-    </article>
+    <ul id="content" class="uk-switcher">
+        <li>
+            <div v-if="!store.state.General.folder">
+                Make a selection from the left
+            </div>
+            <article id="textarea-wrapper" v-if="store.state.General.folder === 'chapters'">
+                <textarea
+                    id="textarea"
+                    ref="textarea"
+                    spellcheck="true"
+                    @keydown.tab.prevent="insert_tab"
+                    v-bind:value="store.state.General.content"
+                    >
+                </textarea>
+            </article>
+
+            <CollectionList :change_type="change_type" v-else />
+            test
+        </li>
+        <li>
+            more stuff
+        </li>
+    </ul>
 
     <Modal :add_item="add_item" :type="type" />
 </section>

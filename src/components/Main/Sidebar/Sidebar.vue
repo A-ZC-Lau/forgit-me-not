@@ -49,7 +49,7 @@
             });
         },
         methods: {
-            add (folder) {
+            add_file (folder) {
                 let location = path.join(store.state.General.root, folder)
                 let filename = electron.remote.dialog.showSaveDialog({title: "New file", defaultPath: location});
 
@@ -80,7 +80,7 @@
                         slashes: true,
                     })
                     :
-                    'http://localhost:9080/#/input'
+                    'http://localhost:8080/#/input'
                 win.loadURL(format);
 
                 win.on('close', function () {
@@ -96,6 +96,8 @@
                 let content = fs.readFileSync(new_location, 'utf8')
 
                 console.log(content)
+                console.log(file, content)
+                store.commit("add_tab", {name: file, content})
 
                 if (folder === "collections")
                 {
