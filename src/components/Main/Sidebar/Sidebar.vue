@@ -95,8 +95,6 @@
                 let new_location = path.join(store.state.General.root, folder, file);
                 let content = fs.readFileSync(new_location, 'utf8')
 
-                console.log(content)
-                console.log(file, content)
                 store.commit("add_tab", {name: file, content})
 
                 if (folder === "collections")
