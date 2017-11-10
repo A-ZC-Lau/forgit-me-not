@@ -27,20 +27,9 @@ const mutations = {
         state.root = payload.root
     },
     add_tab (state, {name, content}) {
-        console.log('tabs here')
-        console.log(name,content)
-        let shouldAdd = true
-        for (let tab of state.tabs)
-        {
-            if (tab.name === name)
-            {
-                console.log('break tab')
-                shouldAdd = false
-                break
-            }
-        }
+        let shouldAdd = state.tabs.find( tab => tab.name === name )
 
-        if (shouldAdd)
+        if (!shouldAdd)
         {
             console.log('add tab')
             state.tabs = [...state.tabs, {name, content}]
