@@ -76,6 +76,9 @@
             save_file,
             tab_close() {
                 console.log("tab close")
+            },
+            show_files() {
+                console.log(store.state.General.tabs);
             }
         },
         watch: {
