@@ -55,6 +55,7 @@
         },
         mounted() {
             autosize(this.$refs.textarea)
+            console.log(store.state.General.folder);
         },
         methods: {
             add_group() {
@@ -66,16 +67,19 @@
             change_type(type) {
                 this.type = type
             },
-            insert_tab() {
-                var t = this.$refs.textarea
+            save_file() {
+                $("li.uk-active")
+            },
+            close_tab({name, folder}) {
+                store.commit("close_tab", {name, folder})
+                console.log("tab close")
+            },
+            insert_tab(event) {
+                var t = event.target
                 var start = t.selectionStart
                 var end = t.selectionEnd
                 t.value = t.value.substring(0, start) + "\t" + t.value.substring(end)
                 t.selectionStart = t.selectionEnd = start + 1;
-            },
-            save_file,
-            tab_close() {
-                console.log("tab close")
             },
             show_files() {
                 console.log(store.state.General.tabs);

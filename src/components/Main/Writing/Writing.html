@@ -5,43 +5,39 @@
 
     <collection :counter="3"></collection>
 
-    <div v-for="tab in tabs">
-        tabs: {{ tab.name }}
-        <div>
-            {{ tab.content }}
-        </div>
-    </div>
-
     <button @click="show_files">show files</button>
 
-    <template v-if="store.state.General.folder">
+    <template v-if="tabs.length">
         <ul class="uk-tab" data-uk-tab="{connect:'#content'}">
             <li v-for="tab in tabs">
                 <a href="">
                     {{ tab.name }}
-                    <i class="fa fa-times hover padding" aria-hidden="true" @click.stop.prevent="tab_close"></i>
+                    <i class="fa fa-times hover padding" aria-hidden="true" @click.stop.prevent="close_tab({folder: tab.folder, name: tab.name})"></i>
                 </a>
             </li>
         </ul>
 
         <ul id="content" class="uk-switcher">
             <li v-for="tab in tabs">
-                <article id="textarea-wrapper" v-if="store.state.General.folder === 'chapters'">
-                <textarea
-                    id="textarea"
-                    ref="textarea"
-                    spellcheck="true"
-                    @keydown.tab.prevent="insert_tab"
-                    :value="tab.content"
+                <article
+                    id="textarea-wrapper"
+                    v-if="tab.folder === 'chapters'"
                 >
-                </textarea>
-            </article>
+                    <textarea
+                        id="textarea"
+                        ref="textarea"
+                        spellcheck="true"
+                        @keydown.tab.prevent="insert_tab"
+                        :value="tab.content"
+                    >
+                    </textarea>
+                </article>
 
-            <CollectionList :change_type="change_type" v-else />
-        </li>
-    </ul>
+                <CollectionList :change_type="change_type" v-else />
+            </li>
+        </ul>
     </template>
-    <template>
+    <template v-else>
         <div>
             Make a selection from the left
         </div>

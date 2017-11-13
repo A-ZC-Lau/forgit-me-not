@@ -95,13 +95,12 @@
                 let new_location = path.join(store.state.General.root, folder, file);
                 let content = fs.readFileSync(new_location, 'utf8')
 
-                store.commit("add_tab", {name: file, content})
+                store.commit("add_tab", {name: file, content, folder})
 
                 if (folder === "collections")
                 {
                     content = JSON.parse(content)
                 }
-                store.commit('set_content', {folder, content, file})
             },
             return_files (folder) {
                 let location = path.join(store.state.General.root, folder)

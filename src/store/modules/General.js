@@ -26,17 +26,19 @@ const mutations = {
     set_root (state, payload) {
         state.root = payload.root
     },
-    add_tab (state, {name, content}) {
-        let shouldAdd = state.tabs.find( tab => tab.name === name )
+    add_tab (state, {name, content, folder}) {
+        let shouldAdd = state.tabs.find( tab => (tab.name === name && tab.folder === folder) )
 
         if (!shouldAdd)
         {
             console.log('add tab')
-            state.tabs = [...state.tabs, {name, content}]
+            // state.tabs = [...state.tabs, {name, content, folder}]
+            state.tabs.push({name, content, folder})
         }
     },
-    delete_tab (state, {name}) {
-        state.tabs = state.tabs.filter( tab => tab.name !== name)
+    close_tab (state, {name, folder}) {
+        console.log('close tab', name, folder);
+        state.tabs = state.tabs.filter( tab => (tab.name !== name || tab.folder !== folder))
     }
 }
 
