@@ -7,10 +7,12 @@
     const path = require('path')
     const url = require('url')
     import $ from 'jquery'
+    require('jquery-ui/ui/widgets/resizable.js')
+    require('jquery-ui/themes/base/resizable.css')
 
     import Modal from '@/components/Modal'
     import store from '@/store'
-    import { save_file, select_root } from '@/global.js'
+    import { select_root } from '@/global.js'
 
     export default {
         data() {
@@ -33,6 +35,11 @@
             this.update_files()
         },
         mounted() {
+            $( "#sidebar" ).resizable({
+                maxHeight: "100vh",
+                minWidth: 140
+            });
+
             // pop up menu
             const popup_menu = new Menu()
             popup_menu.append(new MenuItem({label: 'MenuItem1', click() { console.log('item 1 clicked') }}))
@@ -88,9 +95,6 @@
                 })
             },
             load_file ({folder, file}) {
-                // save current file first
-                save_file()
-
                 // load new file
                 let new_location = path.join(store.state.General.root, folder, file);
                 let content = fs.readFileSync(new_location, 'utf8')

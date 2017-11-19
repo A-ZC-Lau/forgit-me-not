@@ -14,7 +14,7 @@
     import Vue from 'vue'
     import Modal from '@/components/Modal'
     import CollectionList from '@/components/Main/Writing/CollectionList/CollectionList'
-    import { save_file } from '@/global.js'
+    // import { save_file } from '@/global.js'
 
     var collection = Vue.component('collection', {
         computed: {
@@ -50,6 +50,8 @@
                 return store.state.General.folder
             },
             tabs: function() {
+                // let tabs = Array(20).fill().map( (v,i) => { return { folder: "test", name: "test"+i } } )
+                // return tabs
                 return store.state.General.tabs
             }
         },
@@ -68,7 +70,22 @@
                 this.type = type
             },
             save_file() {
-                $("li.uk-active")
+                let active = $("ul.uk-tab li.uk-active")[0]
+                let file = $(active).data('file');
+                let folder = $(active).data('folder')
+
+                let { root } = store.state.General
+                if (folder === "chapters")
+                {
+                    let location = path.join(root, folder, file);
+                    let content = $("#textarea").val()
+                    fs.writeFile(location, content, (err) => {
+                        if (err)
+                        {
+                            console.error(err)
+                        }
+                    })
+                }
             },
             close_tab({name, folder}) {
                 store.commit("close_tab", {name, folder})
@@ -106,6 +123,7 @@
         overflow: auto;
         text-align: left;
         width: 100%;
+        max-width: 100%;
     }
 
     textarea {

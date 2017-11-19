@@ -4,10 +4,10 @@ const fs = window.require('fs')
 import store from '@/store'
 import $ from 'jquery'
 
-export var save_file = function ()
+export var save_file = function ({folder, file})
 {
     console.log('saving')
-    let { root, folder, file } = store.state.General
+    let { root } = store.state.General
     if (folder === "chapters")
     {
         let location = path.join(root, folder, file);

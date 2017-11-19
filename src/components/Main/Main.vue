@@ -2,8 +2,6 @@
 
 <script>
     import $ from 'jquery'
-    require('jquery-ui/ui/widgets/resizable.js')
-    require('jquery-ui/themes/base/resizable.css')
 
     import 'uikit/dist/js/uikit.min.js'
     import 'uikit/dist/css/uikit.min.css'
@@ -32,10 +30,6 @@
             select_root
         },
         mounted () {
-            $( "#sidebar" ).resizable({
-                maxHeight: "100vh",
-                minWidth: 140
-            });
             console.log(this.$route)
         }
     }
@@ -49,9 +43,10 @@
         color: #2c3e50;
         display: flex;
         height: 100vh;
-        overflow: hidden;
+        overflow: auto;
         text-align: center;
         width: 100vw;
+        max-width: 100vw;
     }
     #select_folder {
         align-items: center;

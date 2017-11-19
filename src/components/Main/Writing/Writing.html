@@ -8,8 +8,8 @@
     <button @click="show_files">show files</button>
 
     <template v-if="tabs.length">
-        <ul class="uk-tab" data-uk-tab="{connect:'#content'}">
-            <li v-for="tab in tabs">
+        <ul id="tabs" class="uk-tab" data-uk-tab="{connect:'#content'}" style="flex-wrap: nowrap;">
+            <li v-for="tab in tabs" :data-folder="tab.folder" :data-file="tab.name">
                 <a href="">
                     {{ tab.name }}
                     <i class="fa fa-times hover padding" aria-hidden="true" @click.stop.prevent="close_tab({folder: tab.folder, name: tab.name})"></i>
@@ -42,7 +42,5 @@
             Make a selection from the left
         </div>
     </template>
-
-
     <Modal :add_item="add_item" :type="type" />
 </section>
